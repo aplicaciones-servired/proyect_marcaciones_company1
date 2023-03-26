@@ -1,12 +1,9 @@
 import './App.css'
-import resultados from './mocks/with-results.json'
-
-// import no_results from './mocks/no-results.json'
-// const API_URL='http://www.omdbapi.com/?apikey=9038368e&s=avengers'
+import { Movies } from './components/Movies'
+import { useMovies } from './hooks/useMovies'
 
 export function App () {
-  const movies = resultados.Search
-  const hasMovies = movies.length > 0
+  const { movies: mappedMovies } = useMovies()
 
   return (
     <section className='page'>
@@ -20,25 +17,9 @@ export function App () {
       </header>
 
       <main>
-        {
-          hasMovies
-            ? (
-            <ul>
-              {
-                movies.map(movie => (
-                  <li key={movie.imdbID}>
-                    <h3>{movie.Title}</h3>
-                    <p>{movie.Year}</p>
-                    <img src={movie.Poster} alt={movie.Title} />
-                  </li>
-                ))
-              }
-            </ul>
-              )
-            : <p>No se encontraron resultados</p>
-        }
+        <Movies movies={mappedMovies} />
       </main>
 
-    </section>
+    </section >
   )
 }
