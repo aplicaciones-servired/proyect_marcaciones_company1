@@ -1,27 +1,30 @@
 import { useState, useEffect } from "react";
-import { tasks as data} from "./task.js";
+import { tasks as data } from "./task.js";
+import TaskForm from "./TaskForm.jsx";
+import TaskList from "./TaskList.jsx";
 
-function Appjs() {
-  const [tasks, setTask] = useState([]);
+export function App() {
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    setTask(data);
+    setTasks(data);
   }, []);
 
-  if (tasks.length === 0) {
-    return <h1>No Tengo Tareas</h1>;
+  function createTasks(tilteTask) {
+    setTasks([
+      ...tasks,
+      {
+        title: tilteTask,
+        _id: tasks.length,
+        description: "Nueva Tarea",
+      },
+    ]);
   }
 
   return (
-    <div key={tasks.id}>
-      {tasks.map((task) => (
-        <div>
-          <h1>{task.title}</h1>
-          <p>{task.description}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <TaskForm createTasks={createTasks} />
+      <TaskList tasks={tasks} />
+    </>
   );
 }
-
-export default Appjs;
