@@ -9,4 +9,9 @@ export const tasks = [
     title: 'Mi Segunda Tarea',
     description: 'Iniciando 2° Tarea'
   },
+  {
+    _id: 2,
+    title: 'Mi Tercer Tarea',
+    description: 'Iniciando 3° Tarea'
+  },
 ];
