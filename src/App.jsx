@@ -1,30 +1,31 @@
-import { useState, useEffect } from "react";
-import { tasks as data } from "./task.js";
-import TaskForm from "./TaskForm.jsx";
-import TaskList from "./TaskList.jsx";
+import { useState } from "react";
+import { Products } from "./components/Products.jsx";
+import { products as initialProducts } from "./mocks/products.json";
+import { Header } from "./components/Header.jsx";
 
-export function App() {
-  const [tasks, setTasks] = useState([]);
+function App() {
+  const [products] = useState(initialProducts);
+  const [filters, setFilters] = useState({
+    category: "all",
+    minPrice: 0,
+  });
+  const filterProducts = (products) => {
+    return products.filter((product) => {
+      return (
+        product.price >= filters.minPrice &&
+        (filters.category === "all" || product.category === filters.category)
+      );
+    });
+  };
 
-  useEffect(() => {
-    setTasks(data);
-  }, []);
-
-  function createTasks(tilteTask) {
-    setTasks([
-      ...tasks,
-      {
-        title: tilteTask,
-        _id: tasks.length,
-        description: "Nueva Tarea",
-      },
-    ]);
-  }
+  const filteredProducts = filterProducts(products);
 
   return (
     <>
-      <TaskForm createTasks={createTasks} />
-      <TaskList tasks={tasks} />
+      <Header changeFilters={setFilters}/>
+      <Products products={filteredProducts} />;
     </>
   );
 }
+
+export default App;
