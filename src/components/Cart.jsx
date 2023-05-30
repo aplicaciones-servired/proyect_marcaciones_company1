@@ -24,15 +24,12 @@ export function Cart() {
 	const carCheckboxId = useId();
 	const { cart, clearCart, addToCart } = useCart();
 
-
-
 	return (
 		<>
 			<label className="cart-button" htmlFor={carCheckboxId}>
 				<CartIcon />
 			</label>
 			<input id={carCheckboxId} type="checkbox" hidden />
-
 			<aside className="cart">
 				<ul>
 					{

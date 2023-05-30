@@ -1,21 +1,20 @@
-.filters{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 18px;
-    font-weight: bold;
+.filters {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 18px;
+	font-weight: bold;
 }
 
-span{
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-
-    color: rgb(199, 187, 19);
+span {
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	color: rgb(199, 187, 19);
 }
 
 
-.filters > div {
-    display: flex;
-    gap: 1rem;
+.filters>div {
+	display: flex;
+	gap: 1rem;
 }
