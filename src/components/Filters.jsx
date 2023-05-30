@@ -4,15 +4,12 @@ import "./Filters.css";
 export function Filters({ onChange }) {
 
   const [minPrice, setMinPrice] = useState(0);
+
   const minPriceFilterId = useId();
   const categoryFilterId = useId();
 
-  console.log({
-    minPriceFilterId,
-    categoryFilterId,
-  });
-
   const handleChangesMinPrice = (event) => {
+    //* Aquí algo Huele Mal Dos fuentes de la verdad
     setMinPrice(event.target.value);
     onChange((prevState) => ({
       ...prevState,
