@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Login } from './routes/Login.tsx'
+import { Login } from './Routes/Login.tsx'
 import ReactDOM from 'react-dom/client'
 import React from 'react'
 import './index.css'
-import { SigUp } from './routes/SigUp.tsx'
-import { Dashboard } from './routes/Dashboard.tsx'
+import { SigUp } from './Routes/SigUp.tsx'
+import { Dashboard } from './Routes/Dashboard.tsx'
+import { ProtectedRoute } from './Routes/ProtectedRoute.tsx'
 
 const router = createBrowserRouter([
   {
@@ -16,8 +17,14 @@ const router = createBrowserRouter([
     element: <SigUp />
   },
   {
-    path: "/dashboard",
-    element: <Dashboard />
+    path: "/",
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />
+      }
+    ]
   }
 ])
 
