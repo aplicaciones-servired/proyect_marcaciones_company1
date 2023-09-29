@@ -1,13 +1,23 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { App } from './App.tsx'
-import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Login } from './routes/Login.tsx'
+import ReactDOM from 'react-dom/client'
+import React from 'react'
+import './index.css'
+import { SigUp } from './routes/SigUp.tsx'
+import { Dashboard } from './routes/Dashboard.tsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <Login />
+  },
+  {
+    path: "/sigup",
+    element: <SigUp />
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />
   }
 ])
 
