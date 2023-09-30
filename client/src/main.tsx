@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { ProtectedRoute } from './Routes/ProtectedRoute.tsx'
+import { AuthProvider } from './Auth/AuthProvider.tsx'
+import { Dashboard } from './Routes/Dashboard.tsx'
 import { Login } from './Routes/Login.tsx'
+import { SigUp } from './Routes/SigUp.tsx'
 import ReactDOM from 'react-dom/client'
 import React from 'react'
 import './index.css'
-import { SigUp } from './Routes/SigUp.tsx'
-import { Dashboard } from './Routes/Dashboard.tsx'
-import { ProtectedRoute } from './Routes/ProtectedRoute.tsx'
-import { AuthProvider } from './Auth/AuthProvider.tsx'
 
 const router = createBrowserRouter([
   {
