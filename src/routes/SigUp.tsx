@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { DefaultLayout } from "../Layout/DefaultLayout";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../Auth/AuthProvider";
 
 export function SigUp() {
 
-  const [names, setNames] = useState('')
-  const [lastNames, setLastNames] = useState('')
-  const [document, setDocument] = useState('')
+  const [names, setNames] = useState('');
+  const [lastNames, setLastNames] = useState('');
+  const [document, setDocument] = useState('');
+  const auth = useAuth()
+
+  if (auth.isAuthenticated) {
+    return <Navigate to='/dashboard' />
+  }
 
   return (
     <DefaultLayout>

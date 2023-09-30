@@ -1,10 +1,17 @@
 import { useState } from "react";
 import { DefaultLayout } from "../Layout/DefaultLayout";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../Auth/AuthProvider";
 
 export function Login() {
 
-  const [user, setUser] = useState()
-  const [password, setPassword] = useState()
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const auth = useAuth()
+
+  if (auth.isAuthenticated) {
+    return <Navigate to='/dashboard' />
+  }
 
   return (
     <DefaultLayout>
