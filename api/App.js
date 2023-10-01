@@ -13,10 +13,6 @@ App.use(express.json());
 
 const port = process.env.PORT || 5000;
 
-App.get("/", (req, res) => {
-  res.send('Hello')
-})
-
 App.use(getRoutes)
 
 App.listen(port, () => {

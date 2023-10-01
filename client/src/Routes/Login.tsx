@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DefaultLayout } from "../Layout/DefaultLayout";
-import { Navigate } from "react-router-dom";
 import { useAuth } from "../Auth/AuthProvider";
+import axios from "axios";
 
 export function Login() {
 
@@ -9,14 +9,23 @@ export function Login() {
   const [password, setPassword] = useState('');
   const auth = useAuth()
 
-  if (auth.isAuthenticated) {
-    return <Navigate to='/dashboard' />
+
+  async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
+    ev.preventDefault();
+
+    axios.post('http://localhost:5000/api/login', { user, password })
+      .then(data => {
+        if (data.status === 200) {
+          auth.isAuthenticated
+        }
+      })
   }
+
 
   return (
     <DefaultLayout>
 
-      <form className="w-72 pb-40">
+      <form className="w-72 pb-40" onSubmit={handleSubmit}>
         <h1 className='text-center font-semibold pb-4 text-xl'>Iniciar Session</h1>
         <input value={user} onChange={ev => setUser(ev.target.value)} type="text" placeholder="Usuario"
           className="block w-full rounded-md  border p-2 mb-2" required={true} />

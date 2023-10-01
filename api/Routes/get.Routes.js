@@ -3,9 +3,9 @@ import { Login, RefreshToken, SignOut, SignUp, Users } from "../Controllers/getR
 
 export const getRoutes = Router()
 
-getRoutes.get('/api/login', Login)
+getRoutes.post('/api/login', Login)
 
-getRoutes.get('/api/signup', SignUp)
+getRoutes.post('/api/signup', SignUp)
 
 getRoutes.get('/api/singout', SignOut)
 
