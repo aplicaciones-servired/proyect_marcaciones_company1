@@ -1,58 +1,54 @@
 import { Card, DonutChart, Title, List, ListItem } from "@tremor/react"
 import { useState } from "react";
-const cities = [
+const systems = [
   {
-    name: "New York",
-    sales: 9800,
+    name: "Windows",
+    acount: 22,
   },
   {
-    name: "London",
-    sales: 4567,
+    name: "Mac-OS",
+    acount: 15,
   },
   {
-    name: "Hong Kong",
-    sales: 3908,
+    name: "Linux",
+    acount: 30,
   },
   {
-    name: "San Francisco",
-    sales: 2400,
-  },
-  {
-    name: "Singapore",
-    sales: 1908,
-  },
-  {
-    name: "Zurich",
-    sales: 1398,
-  },
+    name: "Android",
+    acount: 20,
+  }
 ];
 
 export const DonutChartUsageExample2 = () => {
   const [value, setValue] = useState(null);
 
   return (
-    <section className="flex">
-      <Card className="w-96">
-        <Title>Sistemas Operativos</Title>
-        <DonutChart
-          className="mt-6"
-          data={cities}
-          category="sales"
-          index="name"
-          colors={["rose", "yellow", "orange", "indigo", "blue", "emerald"]}
-          onValueChange={(v) => setValue(v)}
-        />
+    <>
+      <Card className="flex w-[520px] gap-4 justify-around">
+        <section>
+          <Title>Sistemas Operativos</Title>
+          <DonutChart
+            className="mt-6"
+            data={systems}
+            category="acount"
+            index="name"
+            colors={["blue", "gray", "red", "yellow"]}
+            onValueChange={(v) => setValue(v)}
+          />
+        </section>
 
-        <Title>Tremor Hometowns</Title>
-        <List>
-          {cities.map((item) => (
-            <ListItem key={item.city}>
-              <p><span>{item.city}</span></p>
-              <p><span>{item.rating}</span></p>
-            </ListItem>
-          ))}
-        </List>
+        <section>
+          <Title>Detallado Sistemas</Title>
+          <List>
+            {systems.map((item) => (
+              <ListItem key={item.city}>
+                <p><span>{item.name}</span></p>
+                <p><span>{item.acount}</span></p>
+              </ListItem>
+            ))}
+          </List>
+        </section>
       </Card>
-    </section>
-  );  
+    </>
+  );
 };
