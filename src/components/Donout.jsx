@@ -18,7 +18,7 @@ export const DonutChartUsageExample2 = () => {
             data={Sistemas}
             category="count"
             index="name"
-            colors={["blue", "gray", "red", "yellow"]}
+            colors={["pink", "cyan", "amber", "purple"]}
             onValueChange={(v) => setValue(v)}
           />
         </section>
