@@ -3,7 +3,7 @@ import { FormEvent, useState } from 'react'
 import { toast, Toaster } from 'sonner'
 import axios from 'axios'
 
-import { URL_API, APP_NAME } from '../utils/contants'
+import { URL_API_LOGIN, APP_NAME } from '../utils/contants'
 
 function LoginPage() {
   const { setIsAuthenticated } = useAuth()
@@ -13,7 +13,7 @@ function LoginPage() {
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault();
 
-    axios.post(`${URL_API}/login`, { username, password, app: APP_NAME })
+    axios.post(`${URL_API_LOGIN}/login`, { username, password, app: APP_NAME })
       .then(res => {
         if (res.status === 200) {
           setIsAuthenticated(true)

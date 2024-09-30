@@ -1,10 +1,10 @@
 import { LogoutAndDeleteToken } from '../../services/LogOut'
 import { useAuth } from '../../auth/AuthContext'
 import ThemeToggleButton from '../ThemeToggle'
-import { LinkNav } from './LinkNav'
 import { useNavigate } from 'react-router-dom'
+import { LinkNav } from './LinkNav'
 
-export const NavBar = () => {
+const NavBar = () => {
   const { setIsAuthenticated } = useAuth()
   const navigate = useNavigate()
 
@@ -49,3 +49,5 @@ export const NavBar = () => {
 
   )
 }
+
+export default NavBar
