@@ -38,7 +38,7 @@ pipeline {
       stage('delete images if exist') {
         steps{
           script {
-            def images = 'api_marc:v1.0'
+            def images = 'api-marca-v1.0'
             if (sh(script: "docker images -q ${images}", returnStdout: true).trim()) {
               sh "sudo docker rmi ${images}"
             } else {
