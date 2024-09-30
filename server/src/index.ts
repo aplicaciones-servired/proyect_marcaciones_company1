@@ -27,4 +27,4 @@ app.listen(PORT, () => {
 
 db_connection.authenticate()
   .then(() => console.log('Database connection has been established successfully.'))
-  .catch((error) => console.error('Unable to connect to the database:', error.message));
+  .catch((error) => console.log(error));
