@@ -15,9 +15,9 @@ export async function infoMarcaciones(req: Request, res: Response) {
 
     const stados = reduceStates(rows);
 
-    return res.status(200).json({ count, stados, totalPersona: personas.length });
+    res.status(200).json({ count, stados, totalPersona: personas.length });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'Internal server error' })
+    res.status(500).json({ message: 'Internal server error' })
   }
 }

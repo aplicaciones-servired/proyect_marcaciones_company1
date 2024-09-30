@@ -8,6 +8,7 @@ interface gpTurnoHorarioI {
   IdGrupoHorario: number;
   IdHorario: number;
   diaSeman: string;
+  Turno?: Turnos;
 }
 
 type gpTurnoHorarioICreationAttributes = Optional<gpTurnoHorarioI, 'id'>;
@@ -17,6 +18,7 @@ export class GrupoTurnoVsHorario extends Model<gpTurnoHorarioI, gpTurnoHorarioIC
   declare IdGrupoHorario: number;
   declare IdHorario: number;
   declare diaSeman: string;
+  declare Turno: Turnos;
 }
 
 GrupoTurnoVsHorario.init(

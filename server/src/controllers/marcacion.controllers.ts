@@ -1,8 +1,8 @@
-import { GrupoTurnoVsHorario } from '../model/GrupoTurnoVsHorario';
-import { Marcacion } from '../model/marcacion.model';
-import { Persona } from '../model/persona.model';
-import { col, fn, Op, where } from 'sequelize';
-import { Turnos } from '../model/turnos.model';
+import { GrupoTurnoVsHorario } from '../models/gpTurnoVsHorario.model';
+import { Marcacion } from '../models/marcaciones.model';
+import { Persona } from '../models/persona.model';
+import { fn, Op } from 'sequelize';
+import { Turnos } from '../models/turnos.model';
 import { Request, Response } from 'express';
 
 const getDayOfWeekString = (): string => {
@@ -45,10 +45,10 @@ export const getMarcaciones = async (req: Request, res: Response) => {
     }).sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
 
     // Enviar la respuesta con los datos paginados
-    return res.status(200).json({ marcaciones: marcacionesFormateadas, count });
+    res.status(200).json({ marcaciones: marcacionesFormateadas, count });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 }
 
@@ -87,9 +87,9 @@ export const getAuditMarcacion = async (req: Request, res: Response) => {
       }
     })
 
-    return res.status(200).json(marcacionesFormateadas);
+    res.status(200).json(marcacionesFormateadas);
   } catch (error) {
     console.error('Error al obtener las marcaciones:', error);
-    return res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
