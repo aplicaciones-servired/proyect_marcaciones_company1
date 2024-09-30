@@ -40,7 +40,7 @@ pipeline {
           script {
             def images = 'api-marca-v1.0'
             if (sh(script: "docker images -q ${images}", returnStdout: true).trim()) {
-              sh "sudo docker rmi ${images}"
+              sh "docker rmi ${images}"
             } else {
               echo "Image ${images} does not exist."
               echo "continuing..."
