@@ -1,11 +1,11 @@
 import { GrupoTurnoVsHorario } from '../models/gpTurnoVsHorario.model';
 import { GrupoHorario } from '../models/gphorario.model';
+import { Persona } from '../models/persona.model';
 import { Empresa } from '../models/empresa.model';
 import { Turnos } from '../models/turnos.model';
 import { Cargo } from '../models/cargos.model';
 import { Request, Response } from 'express';
 import { Area } from '../models/areas.model';
-import { Persona } from '../models/persona.model';
 
 // TODO: este codigo está muy extenso y se puede refactorizar en funciones más pequeñas
 

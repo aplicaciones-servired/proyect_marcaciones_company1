@@ -30,8 +30,8 @@ export interface Turnos {
   hora_inicio: string;
   hora_fin: string;
   teorico: string;
-  tolerancia_despues_entrada: string;
-  tolerancia_antes_salir: string;
+  hora_inicio_break: string;
+  hora_fin_break: string;
   tiempo_breack: string;
   conceptos: string;
 }

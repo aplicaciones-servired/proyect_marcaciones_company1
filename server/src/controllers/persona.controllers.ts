@@ -20,7 +20,7 @@ export const getPersonaById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const persona = await Persona.findByPk(
       id, 
-      { attributes: ['id', 'identificacion', 'nombres', 'apellidos', 'email', 'direccion', 'ciudad', 'telefono', 'rH', 'id_Areas', 'id_Cargo', 'id_Grupo_Horario'] }
+      { attributes: ['id', 'identificacion', 'nombres', 'apellidos', 'id_Areas', 'id_Cargo', 'id_Grupo_Horario'] }
     );
 
     if (!persona) {

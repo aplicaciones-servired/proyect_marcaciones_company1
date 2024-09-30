@@ -1,6 +1,6 @@
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { ModalDelete } from "../../../components/ModalDelete";
 import { type Turnos } from "../../../types/Interfaces";
-import { FormEvent, useEffect, useRef, useState } from "react";
 import { Label } from "../../../components/ui/Label";
 import { Input } from "../../../components/ui/Input";
 import { URL_API } from "../../../utils/contants";
@@ -111,8 +111,8 @@ export default function Turnos() {
                 <td className="px-6 py-4">{turno.teorico.split(':', 1)} h</td>
                 <td className="px-6 py-4">{turno.hora_inicio}</td>
                 <td className="px-6 py-4">{turno.hora_fin}</td>
-                <td className="px-6 py-4">{turno.tolerancia_despues_entrada}</td>
-                <td className="px-6 py-4">{turno.tolerancia_antes_salir}</td>
+                <td className="px-6 py-4">{turno.hora_inicio_break}</td>
+                <td className="px-6 py-4">{turno.hora_fin_break}</td>
                 <td className="px-6 py-4">{turno.tiempo_breack}</td>
                 <td className='px-6 py-4 flex gap-2'>
                   {/* <button className='bg-yellow-300 hover:bg-yellow-400 text-black px-2 py-1 rounded-md' // onClick={() => updateturno(turno)}

@@ -3,10 +3,10 @@ import express from 'express';
 import logs from 'morgan';
 import cors from 'cors';
 
-import { infoRoutes } from './routes/info.routes';
 import { marcacionRouter } from './routes/marcacion.routes';
 import { opcionesRouter } from './routes/opciones.routes';
 import { personaRouter } from './routes/persona.routes';
+import { infoRoutes } from './routes/info.routes';
 
 const v1 = '/api/marcaciones/v1';
 const app = express();
