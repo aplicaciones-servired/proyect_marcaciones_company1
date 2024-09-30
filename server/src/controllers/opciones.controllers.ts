@@ -34,6 +34,7 @@ export const newArea = async (req: Request, res: Response) => {
 
   if (!codigo || !nombre) {
     res.status(400).json({ message: 'código y nombre área son requeridos' });
+    return;
   }
 
   try {
@@ -43,12 +44,14 @@ export const newArea = async (req: Request, res: Response) => {
 
     if (exist) {
       res.status(400).json({ message: 'El código de área ya existe' });
+      return;
     }
 
     const result = await Area.create({ codigo, descripcion: nombre });
 
     if (!result) {
       res.status(400).json({ message: 'No se pudo crear el área' });
+      return;
     }
 
     res.status(201).json({ message: 'Area Creada Correctamente' });
@@ -63,12 +66,14 @@ export const deleteArea = async (req: Request, res: Response) => {
 
   if (!id) {
     res.status(400).json({ message: 'id es requerido' });
+    return;
   }
 
   try {
     const result = await Area.destroy({ where: { id } });
     if (!result) {
       res.status(400).json({ message: 'No se pudo eliminar el área' });
+      return;
     }
 
     res.status(200).json({ message: 'Area Eliminada Correctamente' });
@@ -83,6 +88,7 @@ export const updateArea = async (req: Request, res: Response) => {
 
   if (!id || !codigo || !nombre) {
     res.status(400).json({ message: 'id, código y nombre área son requeridos' });
+    return;
   }
 
   try {
@@ -90,6 +96,7 @@ export const updateArea = async (req: Request, res: Response) => {
 
     if (!result) {
       res.status(400).json({ message: 'No se pudo actualizar el área' });
+      return;
     }
 
     res.status(200).json({ message: 'Area Actualizada Correctamente' });
@@ -114,6 +121,7 @@ export const newCargo = async (req: Request, res: Response) => {
 
   if (!codigo || !nombre) {
     res.status(400).json({ message: 'código y nombre cargo son requeridos' });
+    return;
   }
 
   try {
@@ -121,12 +129,14 @@ export const newCargo = async (req: Request, res: Response) => {
 
     if (exist) {
       res.status(400).json({ message: 'El código de cargo ya existe' });
+      return;
     }
 
     const result = await Cargo.create({ codigo, descripcion: nombre });
 
     if (!result) {
       res.status(400).json({ message: 'No se pudo crear el cargo' });
+      return;
     }
 
     res.status(201).json({ message: 'Cargo Creado Correctamente' });
@@ -141,12 +151,14 @@ export const deleteCargo = async (req: Request, res: Response) => {
 
   if (!id) {
     res.status(400).json({ message: 'id es requerido' });
+    return;
   }
 
   try {
     const result = await Cargo.destroy({ where: { ID: id } });
     if (!result) {
       res.status(400).json({ message: 'No se pudo eliminar el cargo' });
+      return;
     }
 
     res.status(200).json({ message: 'Cargo Eliminado Correctamente' });
@@ -161,6 +173,7 @@ export const updateCargo = async (req: Request, res: Response) => {
 
   if (!id || !codigo || !nombre) {
     res.status(400).json({ message: 'id, código y nombre cargo son requeridos' });
+    return;
   }
 
   try {
@@ -168,6 +181,7 @@ export const updateCargo = async (req: Request, res: Response) => {
 
     if (!result) {
       res.status(400).json({ message: 'No se pudo actualizar el cargo' });
+      return;
     }
 
     res.status(200).json({ message: 'Cargo Actualizado Correctamente' });
@@ -192,6 +206,7 @@ export const newTurno = async (req: Request, res: Response) => {
 
   if (!codigo || !descripcion || !hora_inicio || !hora_fin || !teorico || !hora_inicio_break || !hora_fin_break || !tiempo_breack) {
     res.status(400).json({ message: 'Todos los campos son requeridos' });
+    return;
   }
 
   try {
@@ -199,12 +214,14 @@ export const newTurno = async (req: Request, res: Response) => {
 
     if (exist) {
       res.status(400).json({ message: 'El código de turno ya existe' });
+      return;
     }
 
     const result = await Turnos.create({ codigo, descripcion, hora_inicio, hora_fin, teorico, hora_inicio_break, hora_fin_break, tiempo_breack, conceptos });
 
     if (!result) {
       res.status(400).json({ message: 'No se pudo crear el turno' });
+      return;
     }
 
     res.status(201).json({ message: 'Turno Creado Correctamente' });
@@ -219,6 +236,7 @@ export const deleteTurno = async (req: Request, res: Response) => {
 
   if (!id) {
     res.status(400).json({ message: 'id es requerido' });
+    return;
   }
 
   try {
@@ -226,11 +244,13 @@ export const deleteTurno = async (req: Request, res: Response) => {
 
     if (existInGrupo) {
       res.status(400).json({ message: 'No se puede eliminar el turno, ya que se encuentra ligado a un grupo' });
+      return;
     }
 
     const result = await Turnos.destroy({ where: { id } });
     if (!result) {
       res.status(400).json({ message: 'No se pudo eliminar el turno' });
+      return;
     }
 
     res.status(200).json({ message: 'Turno Eliminado Correctamente' });
@@ -255,6 +275,7 @@ export const newGrupoTurno = async (req: Request, res: Response) => {
 
   if (!codigo || !nombre) {
     res.status(400).json({ message: 'código y descripción grupo turno son requeridos' });
+    return;
   }
 
   try {
@@ -262,12 +283,14 @@ export const newGrupoTurno = async (req: Request, res: Response) => {
 
     if (exist) {
       res.status(400).json({ message: 'El código de grupo turno ya existe' });
+      return;
     }
 
     const result = await GrupoHorario.create({ codigo, descripcion: nombre });
 
     if (!result) {
       res.status(400).json({ message: 'No se pudo crear el grupo turno' });
+      return;
     }
 
     res.status(201).json({ message: 'Grupo Turno Creado Correctamente' });
@@ -282,12 +305,14 @@ export const deleteGrupoTurno = async (req: Request, res: Response) => {
 
   if (!id) {
     res.status(400).json({ message: 'id es requerido' });
+    return;
   }
 
   try {
     const existeGpHorario = await GrupoTurnoVsHorario.findOne({ where: { IdGrupoHorario: id } });
     if (existeGpHorario) {
       res.status(400).json({ message: 'No se puede eliminar el grupo turno, ya que contiene turnos asignados' });
+      return;
     }
   } catch (error) {
     console.log(error);
@@ -305,6 +330,7 @@ export const deleteGrupoTurno = async (req: Request, res: Response) => {
     const result = await GrupoHorario.destroy({ where: { id } });
     if (!result) {
       res.status(400).json({ message: 'No se pudo eliminar el grupo turno' });
+      return;
     }
 
     res.status(200).json({ message: 'Grupo Turno Eliminado Correctamente' });
@@ -337,12 +363,14 @@ export const deleteGrupovsTurnos = async (req: Request, res: Response) => {
 
   if (!id) {
     res.status(400).json({ message: 'id es requerido' });
+    return;
   }
 
   try {
     const result = await GrupoTurnoVsHorario.destroy({ where: { id } });
     if (!result) {
       res.status(400).json({ message: 'No se pudo eliminar el grupo turno' });
+      return;
     }
 
     res.status(200).json({ message: 'Grupo Turno Eliminado Correctamente' });
@@ -359,6 +387,7 @@ export const createNewGrupovsTurnos = async (req: Request, res: Response) => {
   
   if (!grupoHorario || !turno || !Array.isArray(dias) || dias.length === 0) {
     res.status(400).json({ message: 'grupoHorario, turno y días son requeridos y días debe ser un array no vacío' });
+    return;
   }
 
   try {
