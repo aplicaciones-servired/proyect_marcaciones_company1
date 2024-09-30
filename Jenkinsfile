@@ -3,9 +3,10 @@ pipeline {
     
   tools { nodejs 'node-v22' }
 
-  environment { ENV_MARCACION_CLIENT = credentials('ENV_MARCACION_CLIENT') }
-  environment { ENV_MARCACION_API = credentials('ENV_MARCACION_API') }
-
+  environment { 
+    ENV_MARCACION_CLIENT = credentials('ENV_MARCACION_CLIENT')
+    ENV_MARCACION_API = credentials('ENV_MARCACION_API')
+  }
     
   stages {
     stage('Copy .env files') {
