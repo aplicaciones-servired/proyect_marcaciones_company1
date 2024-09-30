@@ -9,7 +9,7 @@ const DB_PORT = process.env.DB_PORT! as string;
 const db_connection = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
   host: DB_HOST,
   port: parseInt(DB_PORT),
-  dialect: 'mariadb',
+  dialect: 'mysql',
   timezone: '-05:00'
 });
 
