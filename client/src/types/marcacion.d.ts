@@ -26,11 +26,6 @@ interface MarcacionSimple {
   estado: string
 }
 
-export interface MarcacionResponse {
-  marcaciones: MarcacionSimple[]
-  count: number
-}
-
 export interface AuditMarcaciones {
   id: number
   nombres: string

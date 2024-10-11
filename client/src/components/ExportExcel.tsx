@@ -76,7 +76,7 @@ export const BottonExporCartera = ({ datos, time1, time2 }: Props): JSX.Element 
   }
 
   return (
-    <button className='px-4 py-2 bg-green-600 rounded-lg font-semibold text-white hover:bg-green-500' onClick={handleDownload}>
+    <button className='px-2 py-1 bg-green-600 rounded-lg font-semibold text-white hover:bg-green-500' onClick={handleDownload}>
       Exportar Excel
     </button>
   )
