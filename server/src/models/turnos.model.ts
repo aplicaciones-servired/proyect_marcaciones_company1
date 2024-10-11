@@ -14,9 +14,9 @@ interface TurnoAttributes {
   conceptos: string;
 }
 
-type TurnoCreationAttributes = Optional<TurnoAttributes, "id">;
+type TurnoCreationAttributes = Optional<TurnoAttributes, "id" | 'hora_inicio_break' | 'hora_fin_break'>;
 
-export class Turnos extends Model<TurnoAttributes, TurnoCreationAttributes> {
+export class Turnos extends Model<TurnoAttributes, TurnoCreationAttributes> implements TurnoCreationAttributes {
   declare id: number;
   declare codigo: string;
   declare descripcion: string;
@@ -36,11 +36,11 @@ Turnos.init(
     descripcion: { type: DataTypes.STRING, allowNull: false },
     hora_inicio: { type: DataTypes.STRING, allowNull: false },
     hora_fin: { type: DataTypes.STRING, allowNull: false },
-    teorico: { type: DataTypes.STRING, allowNull: false },
-    hora_inicio_break: { type: DataTypes.STRING, allowNull: false },
-    hora_fin_break: { type: DataTypes.STRING, allowNull: false },
-    tiempo_breack: { type: DataTypes.STRING, allowNull: false },
-    conceptos: { type: DataTypes.STRING, allowNull: false },
+    teorico: { type: DataTypes.STRING, allowNull: true },
+    hora_inicio_break: { type: DataTypes.STRING, allowNull: true },
+    hora_fin_break: { type: DataTypes.STRING, allowNull: true },
+    tiempo_breack: { type: DataTypes.STRING, allowNull: true },
+    conceptos: { type: DataTypes.STRING, allowNull: true },
   },
   {
     tableName: "turnotiempos",
