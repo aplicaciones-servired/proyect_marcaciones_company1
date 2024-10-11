@@ -1,6 +1,7 @@
 import { GrupoTurnoVsHorario } from './gpTurnoVsHorario.model';
 import { Model, DataTypes, Optional } from 'sequelize';
 import { db_connection } from '../connections';
+import { Area } from './areas.model';
 
 interface PersonaAttributes {
   id: number;
@@ -31,6 +32,7 @@ class Persona extends Model<PersonaAttributes, PersonaCreationAttributes> implem
   declare id_Centro_Costos: number;
   declare id_Cargo: number;
   declare GrupoTurnoVsHorarios: GrupoTurnoVsHorario[];
+  declare Area: Area | null;
 }
 
 Persona.init({
@@ -55,3 +57,4 @@ Persona.init({
 export { Persona };
 
 Persona.hasMany(GrupoTurnoVsHorario, { foreignKey: 'IdGrupoHorario', sourceKey: 'id_Grupo_Horario' });
+Persona.hasOne(Area, { foreignKey: 'Id', sourceKey: 'id_Areas' });

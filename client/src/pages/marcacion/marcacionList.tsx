@@ -1,11 +1,11 @@
+import { MarcacionPersonaArea } from '../../types/marcacion';
 import { BottonExporCartera } from '../../components/ExportExcel';
-import { MarcacionSimple } from '../../types/marcacion';
 import { URL_API } from '../../utils/contants';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const MarcacionesList = () => {
-  const [data, setData] = useState<MarcacionSimple[]>([]);
+  const [marcaciones, setMarcaciones] = useState<MarcacionPersonaArea[]>([]);
   const [fechaInitial, setFechaInitial] = useState('');
   const [fechaFinal, setFechaFinal] = useState('');
   const [filter, setFilter] = useState('');
@@ -16,8 +16,8 @@ const MarcacionesList = () => {
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get<MarcacionSimple[]>(`${URL_API}/marcaciones`, { params: { fechaInitial, fechaFinal } });
-      setData(response.data);
+      const response = await axios.get(`${URL_API}/marcaciones`, { params: { fechaInitial, fechaFinal } });
+      setMarcaciones(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -28,14 +28,15 @@ const MarcacionesList = () => {
     setFechaFinal('')
   }
 
-  const filterData = data.filter((marcacion) => {
+  const filterData = marcaciones.filter((m) => {
     const lowerCaseFilter = filter.toLowerCase();
     return (
-      marcacion.documento.toLowerCase().includes(lowerCaseFilter) ||
-      marcacion.nombres.toLowerCase().includes(lowerCaseFilter) ||
-      marcacion.apellidos.toLowerCase().includes(lowerCaseFilter)
+      m.documento.toLowerCase().includes(lowerCaseFilter) ||
+      m.nombres.toLowerCase().includes(lowerCaseFilter) ||
+      m.apellidos.toLowerCase().includes(lowerCaseFilter)
     );
   });
+
 
   return (
     <section className='bg-white rounded-lg shadow-md'>
@@ -82,6 +83,7 @@ const MarcacionesList = () => {
             <th className='px-2 py-1'>Fecha Marcación</th>
             <th className='px-2 py-1'>Hora Marcación</th>
             <th className='px-2 py-1'>Estado Marcación</th>
+            <th className='px-2 py-1'>Area</th>
           </tr>
         </thead>
         <tbody>
@@ -94,6 +96,7 @@ const MarcacionesList = () => {
               <td className='border px-2 py-1'>{marcacion.fecha.toString()}</td>
               <td className='border px-2 py-1'>{marcacion.hora.toString()}</td>
               <td className='border px-2 py-1'>{marcacion.estado}</td>
+              <td className='border px-2 py-1'>{marcacion.area}</td>
             </tr>
           ))}
         </tbody>

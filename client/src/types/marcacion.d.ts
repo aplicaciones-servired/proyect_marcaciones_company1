@@ -1,3 +1,5 @@
+import { Area } from "./Interfaces"
+
 export interface Marcacion {
   id: number
   nombres: string
@@ -16,7 +18,7 @@ export interface Marcacion {
   id_foto_temota: string
 }
 
-interface MarcacionSimple {
+export interface MarcacionPersonaArea {
   id: number
   documento: string
   nombres: string
@@ -24,6 +26,7 @@ interface MarcacionSimple {
   fecha: string
   hora: string
   estado: string
+  area: string
 }
 
 export interface AuditMarcaciones {

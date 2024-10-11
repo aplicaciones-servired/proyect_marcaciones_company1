@@ -1,9 +1,10 @@
 import { GrupoTurnoVsHorario } from '../models/gpTurnoVsHorario.model';
 import { Marcacion } from '../models/marcaciones.model';
 import { Persona } from '../models/persona.model';
-import { fn, Op } from 'sequelize';
 import { Turnos } from '../models/turnos.model';
+import { Area } from '../models/areas.model';
 import { Request, Response } from 'express';
+import { fn, Op } from 'sequelize';
 
 const getDayOfWeekString = (): string => {
   const dayIndex = new Date().getDay();
@@ -21,18 +22,18 @@ export const getMarcaciones = async (req: Request, res: Response) => {
   const opc3 = { [Op.eq]: fn('CURDATE') };
 
   try {
-    const { rows, count } = await Marcacion.findAndCountAll({
+    const results = await Marcacion.findAll({
       attributes: ['Id', 'codigo', 'Fecha', 'Hora', 'estado'],
       where: { Fecha: fechaInitial && fechaFinal ? opc : fechaInitial ? opc1 : opc3 },
       include: [{
         attributes: ['nombres', 'apellidos'],
         model: Persona,
+        include: [{ model: Area, attributes: ['descripcion'] }]
       }],
       order: [['Id', 'DESC']],
     });
 
-    // Formatear los datos
-    const marcaciones = rows.map(m => {
+    const marcaciones = results.map(m => {
       return {
         id: m.Id,
         documento: m.codigo,
@@ -40,11 +41,11 @@ export const getMarcaciones = async (req: Request, res: Response) => {
         apellidos: m.Persona!.apellidos,
         fecha: m.Fecha,
         hora: m.Hora,
-        estado: m.estado
+        estado: m.estado,
+        area: m.Persona!.Area ? m.Persona!.Area!.descripcion : 'Sin área'
       }
     }).sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
 
-    // Enviar la respuesta con los datos paginados
     res.status(200).json(marcaciones);
   } catch (error) {
     console.log(error);
