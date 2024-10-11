@@ -108,7 +108,9 @@ export const updateArea = async (req: Request, res: Response) => {
 
 export const getAllCargos = async (req: Request, res: Response) => {
   try {
-    const cargos = await Cargo.findAll();
+    const cargos = await Cargo.findAll({
+      order: [['codigo', 'ASC']]
+    });
     res.status(200).json(cargos);
   } catch (error) {
     console.log(error);
@@ -193,7 +195,9 @@ export const updateCargo = async (req: Request, res: Response) => {
 
 export const getAllTurnos = async (req: Request, res: Response) => {
   try {
-    const turnos = await Turnos.findAll();
+    const turnos = await Turnos.findAll({
+      order: [['codigo', 'ASC']]
+    });
     res.status(200).json(turnos);
   } catch (error) {
     console.log(error);
