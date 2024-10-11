@@ -33,7 +33,8 @@ const MarcacionesList = () => {
     return (
       m.documento.toLowerCase().includes(lowerCaseFilter) ||
       m.nombres.toLowerCase().includes(lowerCaseFilter) ||
-      m.apellidos.toLowerCase().includes(lowerCaseFilter)
+      m.apellidos.toLowerCase().includes(lowerCaseFilter) ||
+      m.area.toLowerCase().includes(lowerCaseFilter)
     );
   });
 
@@ -43,8 +44,9 @@ const MarcacionesList = () => {
       <div className='flex justify-around items-cente'>
         <h1 className='text-gray-700 text-lg font-semibold flex items-center'>Listado de marcaciones</h1>
 
-        <div className='flex items-center gap-2 text-xs py-1'>
+        <p className='flex items-center'>N° Datos: {filterData.length}</p>
 
+        <div className='flex items-center gap-2 text-xs py-1'>
         <div className='flex items-center gap-1'>
           <label htmlFor="">Filtrar:</label>
           <input type="text" placeholder='N° Doc | Nombres' value={filter} onChange={(e) => setFilter(e.target.value)} className='p-1  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'/>

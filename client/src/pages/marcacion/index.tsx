@@ -4,7 +4,7 @@ import MarcacionesList from './marcacionList'
 export default function Marcacion() {
 
   return (
-    <section className='h-[90vh] overflow-y-auto'>
+    <section className='h-[93vh] overflow-y-auto'>
       <MarcacionesList />
     </section>
   )
