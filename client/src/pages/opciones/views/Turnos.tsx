@@ -87,7 +87,7 @@ export default function Turnos() {
 
 
   return (
-    <section className='p-1 flex flex-col h-[92vh] relative'>
+    <section className='p-1 flex flex-col h-[92vh]'>
       <div className='h-[84vh] overflow-y-auto'>
         <table className='w-full text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto'>
           <thead className='text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400'>

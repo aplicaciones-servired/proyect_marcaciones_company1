@@ -55,7 +55,7 @@ export default function Cargos() {
 
   const handleUpdateCargo = (ev: FormEvent) => {
     ev.preventDefault();
-    axios.put(`${URL_API}/updatearea`, { id, codigo, nombre: nombreCargo })
+    axios.put(`${URL_API}/updatecargo`, { id, codigo, nombre: nombreCargo })
       .then(response => {
         if (response.status === 200) {
           toast.success('El área se actualizó correctamente', { description: 'Área actualizada' })
