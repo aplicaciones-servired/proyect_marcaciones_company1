@@ -120,77 +120,79 @@ export default function Areas() {
 
 
   return (
-    <section className="p-1 flex flex-col relative">
+    <section className='p-1 flex flex-col'>
 
-      <table className="w-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" className="px-6 py-3">
-              CODIGO
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Nombre área
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Acciones
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            areas.map(area => (
-              <tr key={area.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700  ">
-                <td className="px-6 py-4">
-                  {area.codigo}
-                </td>
-                <td className="px-6 py-4">
-                  {area.descripcion}
-                </td>
-                <td className='px-6 py-4 flex gap-2'>
-                  <button className='bg-yellow-300 hover:bg-yellow-400 text-black px-2 py-1 rounded-md' onClick={() => updateArea(area)}>Editar</button>
-                  <button className='bg-red-400 hover:bg-red-600 text-white px-2 py-1 rounded-md' onClick={() => openModal(area.id)}>Eliminar</button>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <div className='h-[83vh] overflow-y-auto'>
+        <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
+          <thead className='text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400'>
+            <tr>
+              <th scope='col' className='px-4 py-2'>
+                CODIGO
+              </th>
+              <th scope='col' className='px-4 py-2'>
+                Nombre área
+              </th>
+              <th scope='col' className='px-4 py-2'>
+                Acciones
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              areas.map(area => (
+                <tr key={area.id} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700  '>
+                  <td className='px-4 py-2'>
+                    {area.codigo}
+                  </td>
+                  <td className='px-4 py-2'>
+                    {area.descripcion}
+                  </td>
+                  <td className='px-4 py-2 flex gap-2'>
+                    <button className='bg-yellow-300 hover:bg-yellow-400 text-black px-2 py-1 rounded-md' onClick={() => updateArea(area)}>Editar</button>
+                    <button className='bg-red-400 hover:bg-red-600 text-white px-2 py-1 rounded-md' onClick={() => openModal(area.id)}>Eliminar</button>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
 
-      <section className='mt-auto border rounded-md bg-gray-200 py-2'>
+      <section className='bg-gray-200 flex items-center py-2 rounded-md'>
         <form className='flex justify-end items-center relative' onSubmit={ev => activeUpdate ? handleUpdateArea(ev) : handleNewArea(ev)}>
           <div className={`flex items-center mb-4 absolute left-4 top-2 ${activeNewArea ? 'hidden' : ''}`}>
-            <input checked={activeNewArea} type="checkbox" value='' onChange={() => setActiveNewArea(!activeNewArea)} className="h-5 w-5 text-blue-600 border rounded-md mr-2" />
-            <label htmlFor="">Nueva área</label>
+            <input checked={activeNewArea} type='checkbox' value='' onChange={() => setActiveNewArea(!activeNewArea)} className='h-5 w-5 text-blue-600 border rounded-md mr-2' />
+            <label>Nueva área</label>
           </div>
           <div className='flex items-center'>
             <label className={`${!activeNewArea ? 'hidden' : 'block'} text-gray-700 dark:text-gray-400 w-72 text-center `}>
               Código:
             </label>
-            <input type="text" disabled={!activeNewArea} value={codigo} onChange={(e) => setCodigo(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500" />
+            <input type='text' disabled={!activeNewArea} value={codigo} onChange={(e) => setCodigo(e.target.value)}
+              className='w-full px-4 py-1 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500' />
           </div>
           <div className='flex items-center'>
             <label className={`${!activeNewArea ? 'hidden' : 'block'} text-gray-700 dark:text-gray-400 w-72 text-center `}>
               Nombre del área:
             </label>
-            <input type="text" disabled={!activeNewArea} value={nombreA} onChange={(e) => setNombreA(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500" />
+            <input type='text' disabled={!activeNewArea} value={nombreA} onChange={(e) => setNombreA(e.target.value)}
+              className='w-full px-4 py-1 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500' />
           </div>
           {
             activeUpdate ? (
               <>
                 <button type='submit' title='cancelar edicion' onClick={() => cancelarUpdate()}
-                  className={`bg-red-500 hover:bg-red-700 text-white font-bold py-2 mx-4 px-4 rounded h-10 ${!activeNewArea ? 'hidden' : 'block'}`}>
+                  className={`bg-red-500 hover:bg-red-700 text-white font-bold py-1 mx-4 px-4 rounded h-8 ${!activeNewArea ? 'hidden' : 'block'}`}>
                   <CloseIcon />
                 </button>
                 <button type='submit' title='editar área'
-                  className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 mx-4 px-4 rounded h-10 ${!activeNewArea ? 'hidden' : 'block'}`}>
+                  className={`bg-green-500 hover:bg-green-700 text-white font-bold py-1 mx-4 px-4 rounded h-8 ${!activeNewArea ? 'hidden' : 'block'}`}>
                   <EditIcon />
                 </button>
               </>
             ) : (
               <button type='submit' title='crear área'
-                className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 mx-4 px-4 rounded h-10 ${!activeNewArea ? 'hidden' : 'block'}`}>
+                className={`bg-green-500 hover:bg-green-700 text-white font-bold py-1 mx-4 px-4 rounded h-8 ${!activeNewArea ? 'hidden' : 'block'}`}>
                 <PlusIcon />
               </button>
             )

@@ -16,7 +16,7 @@ const NavBar = () => {
 
   return (
     <nav className='bg-white dark:bg-gray-900 border-b border-gray-200 xl:text-xs 2xl:text-base px-10'>
-      <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4'>
+      <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-1'>
         <figure className='flex gap-2'>
           <img src="logo.webp" className='xl:h-8 2xl:h-10' alt='Logo Gestión Humana' />
           <span className='self-center xl:text-base font-semibold whitespace-nowrap dark:text-white'>Gestión Humana Multired</span>

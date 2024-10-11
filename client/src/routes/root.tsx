@@ -17,7 +17,7 @@ export default function Root() {
     <Suspense fallback={<div>Loading...</div>}>
       <NavBar />
       <Outlet />
-      <Toaster duration={4000} richColors position='top-right' visibleToasts={3} />
+      <Toaster duration={4000} richColors position='top-right' visibleToasts={3} closeButton/>
     </Suspense>
   );
 }
