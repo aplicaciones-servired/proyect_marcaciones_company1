@@ -1,14 +1,14 @@
 import { PlusIcon } from '../../../components/icons/PlusIcon'
 import { GrupoVsTurno } from '../../../types/Interfaces'
-import { URL_API } from '../../../utils/contants'
 import { useEffect, useRef, useState } from 'react'
+import { URL_API } from '../../../utils/contants'
 import { toast } from 'sonner'
 import axios from 'axios'
 
 export default function GrupovsTurno() {
   const [options, setOptions] = useState<GrupoVsTurno | null>(null)
-  const formRef = useRef<HTMLFormElement>(null);
   const [fechtData, setFechtData] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     axios.get(`${URL_API}/grupovsturnos`)
@@ -39,6 +39,7 @@ export default function GrupovsTurno() {
       .then(response => {
         if (response.status === 201) {
           setFechtData(!fechtData)
+          formRef.current?.reset()
           toast.success('Asignación De Turno Exitosa', { description: 'Se ha asignado el turno correctamente' })
         }
       })
