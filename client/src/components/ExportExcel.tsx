@@ -9,7 +9,7 @@ interface Props {
 }
 
 const generateExcelData = (datos: MarcacionSimple[], time1?: string, time2?: string): unknown[] => {
-  const titulo = [{ A: `Resporte Marcaciones Fecha Inicial: ${time1} - Fecha Final: ${time2}` }]
+  const titulo = [{ A: `Reporte Marcaciones Fecha Inicial: ${time1} - Fecha Final: ${time2}` }]
   const headers = [
     {
       A: 'ID',

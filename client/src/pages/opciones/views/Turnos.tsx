@@ -29,7 +29,7 @@ export default function Turnos() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const fields = Object.fromEntries(new window.FormData(e.target as HTMLFormElement));
-    
+
     const turno = {
       codigo: fields.codigo,
       descripcion: fields.nombre_turno,
@@ -44,7 +44,7 @@ export default function Turnos() {
 
     axios.post(`${URL_API}/turno`, turno)
       .then(response => {
-        if(response.status === 201) {
+        if (response.status === 201) {
           toast.success('El turno se creó correctamente', { description: 'Turno creado' });
           setRequest(true);
           formRef.current?.reset();
@@ -53,7 +53,7 @@ export default function Turnos() {
       .catch(error => {
         console.log(error);
         toast.error(error.response?.data?.message || 'Error', { description: 'Error al crear el turno' });
-      })    
+      })
   }
 
   const confirmDeleteTurno = () => {
@@ -159,12 +159,12 @@ export default function Turnos() {
 
             <div>
               <Label name="hora_inicio_break" >Hora Inicio Break</Label>
-              <Input type="time" name="hora_inicio_break" id="hora_inicio_break" required />
+              <Input type="time" name="hora_inicio_break" id="hora_inicio_break" />
             </div>
 
             <div>
               <Label name="hora_fin_break" >Hora Final Break</Label>
-              <Input type="time" name="hora_fin_break" id="hora_fin_break" required />
+              <Input type="time" name="hora_fin_break" id="hora_fin_break" />
             </div>
 
             <div>
@@ -172,10 +172,11 @@ export default function Turnos() {
               <Input type="text" name="tiempo_breack" id="tiempo_breack" required />
             </div>
 
-            <div className="col-span-2">
+            {/* <div className="col-span-2">
               <Label name="conceptos" >Concepto</Label>
               <Input type="text" name="conceptos" id="conceptos" />
-            </div>
+            </div> */}
+
 
             <button type="submit" className="bg-green-600 my-3 text-white text-xl font-semibold rounded-md hover:bg-green-700">
               Crear Turno

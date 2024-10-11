@@ -204,7 +204,7 @@ export const getAllTurnos = async (req: Request, res: Response) => {
 export const newTurno = async (req: Request, res: Response) => {
   const { codigo, descripcion, hora_inicio, hora_fin, hora_inicio_break, teorico, hora_fin_break, tiempo_breack, conceptos } = req.body;
 
-  if (!codigo || !descripcion || !hora_inicio || !hora_fin || !teorico || !hora_inicio_break || !hora_fin_break || !tiempo_breack) {
+  if (!codigo || !descripcion || !hora_inicio || !hora_fin || !teorico || !tiempo_breack) {
     res.status(400).json({ message: 'Todos los campos son requeridos' });
     return;
   }
