@@ -1,14 +1,14 @@
-import { MarcacionSimple } from '../types/marcacion'
+import { MarcacionPersonaArea } from '../types/marcacion'
 import { utils, ColInfo, writeFile } from 'xlsx'
 import { toast } from 'sonner'
 
 interface Props {
-  datos: MarcacionSimple[]
+  datos: MarcacionPersonaArea[]
   time1?: string
   time2?: string
 }
 
-const generateExcelData = (datos: MarcacionSimple[], time1?: string, time2?: string): unknown[] => {
+const generateExcelData = (datos: MarcacionPersonaArea[], time1?: string, time2?: string): unknown[] => {
   const titulo = [{ A: `Reporte Marcaciones Fecha Inicial: ${time1} - Fecha Final: ${time2}` }]
   const headers = [
     {
@@ -19,6 +19,7 @@ const generateExcelData = (datos: MarcacionSimple[], time1?: string, time2?: str
       E: 'Fecha Marcación',
       F: 'Hora Marcación',
       G: 'Estado Marcación',
+      I: 'Area'
     }
   ]
 
@@ -29,7 +30,8 @@ const generateExcelData = (datos: MarcacionSimple[], time1?: string, time2?: str
     D: it.apellidos,
     E: it.fecha,
     F: it.hora,
-    G: it.estado
+    G: it.estado,
+    I: it.area
   }))
 
   return [...titulo, ...headers, ...rows]
