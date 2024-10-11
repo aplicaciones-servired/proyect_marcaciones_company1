@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 import axios from 'axios'
 
 export default function GrupovsTurno() {
+  const [selectedGrupoHorarioId, setSelectedGrupoHorarioId] = useState<number | null>(null);
   const [options, setOptions] = useState<GrupoVsTurno | null>(null)
   const [fechtData, setFechtData] = useState(false)
   const formRef = useRef<HTMLFormElement>(null);
@@ -62,13 +63,29 @@ export default function GrupovsTurno() {
       })
   }
 
+  const handleChangeFiltro = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const id = Number(e.target.value);
+    setSelectedGrupoHorarioId(id);
+  };
+
+  const filteredAsignados = selectedGrupoHorarioId
+    ? options?.asignados.filter(asign => asign.GrupoHorario.id === selectedGrupoHorarioId)
+    : options?.asignados;
+
   return (
-    <section className='flex flex-col h-[90vh]'>
+    <section className='flex flex-col h-[92vh]'>
 
       <section className='flex justify-around py-2'>
-        <div className=''>
-          <h1></h1>
-          <label htmlFor=''></label>
+        <div className='flex flex-col gap-2 justify-center border rounded-md px-4 shadow-md'>
+          <p className='text-center'>Filtrar Grupos Horarios</p>
+          <select onChange={handleChangeFiltro} className='border p-1 rounded-md'>
+            <option value="">Seleccione un Grupo Horario</option>
+            {options?.grupoHorario.map(grupo => (
+              <option key={grupo.id} value={grupo.id}>
+                {grupo.descripcion}
+              </option>
+            ))}
+          </select>
         </div>
 
         <form ref={formRef} className='overflow-y-auto flex max-h-32 w-max px-4 gap-8 border rounded-md shadow-md' onSubmit={handleSubmit}>
@@ -120,45 +137,35 @@ export default function GrupovsTurno() {
         <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
           <thead className='text-xs text-blue-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400'>
             <tr>
-              <th className='px-6 py-3'>ID</th>
-              <th className='px-6 py-3'>
-                Día
-              </th>
-              <th className='px-6 py-3'>
-                Grupo Horario
-              </th>
-              <th className='px-6 py-3'>
-                Turno
-              </th>
-              <th>
-                Acciones
-              </th>
+              <th className='px-4 py-2'>ID</th>
+              <th className='px-4 py-2'>Día</th>
+              <th className='px-4 py-2'>Grupo Horario</th>
+              <th className='px-4 py-2'>Turno</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            {
-              options?.asignados.map(asign => (
-                <tr key={asign.id} className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
-                  <th className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-                    {asign.id}
-                  </th>
-                  <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-                    {asign.diaSeman}
-                  </th>
-                  <td className='px-6 py-4'>
-                    {asign.GrupoHorario.descripcion}
-                  </td>
-                  <td className='px-6 py-4'>
-                    {asign.Turno.descripcion}
-                  </td>
-                  <td className='px-6 py-4'>
-                    <button onClick={() => handleDelete(asign.id)} className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>
-                      Eliminar
-                    </button>
-                  </td>
-                </tr>
-              ))
-            }
+            {filteredAsignados?.map(asign => (
+              <tr key={asign.id} className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
+                <th className='px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+                  {asign.id}
+                </th>
+                <th scope='row' className='px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+                  {asign.diaSeman}
+                </th>
+                <td className='px-3 py-2'>
+                  {asign.GrupoHorario.descripcion}
+                </td>
+                <td className='px-3 py-2'>
+                  {asign.Turno.descripcion}
+                </td>
+                <td className='px-3 py-2'>
+                  <button onClick={() => handleDelete(asign.id)} className='bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded'>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </section>

@@ -140,12 +140,12 @@ export default function Turnos() {
             </div>
 
             <div>
-              <Label name='hora_inicio' >Hora Inicio</Label>
+              <Label name='hora_inicio' >Hora Inicio turno</Label>
               <Input type='time' name='hora_inicio' id='hora_inicio' required />
             </div>
 
             <div>
-              <Label name='hora_fin' >Hora Fin</Label>
+              <Label name='hora_fin' >Hora Fin turno</Label>
               <Input type='time' name='hora_fin' id='hora_fin' required />
             </div>
 
