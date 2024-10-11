@@ -120,7 +120,7 @@ export default function Areas() {
 
 
   return (
-    <section className="p-1 flex flex-col h-[90vh] relative">
+    <section className="p-1 flex flex-col relative">
 
       <table className="w-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
@@ -158,7 +158,7 @@ export default function Areas() {
 
       <section className='mt-auto border rounded-md bg-gray-200 py-2'>
         <form className='flex justify-end items-center relative' onSubmit={ev => activeUpdate ? handleUpdateArea(ev) : handleNewArea(ev)}>
-          <div className="flex items-center mb-4 absolute left-4 top-2">
+          <div className={`flex items-center mb-4 absolute left-4 top-2 ${activeNewArea ? 'hidden' : ''}`}>
             <input checked={activeNewArea} type="checkbox" value='' onChange={() => setActiveNewArea(!activeNewArea)} className="h-5 w-5 text-blue-600 border rounded-md mr-2" />
             <label htmlFor="">Nueva área</label>
           </div>
