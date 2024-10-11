@@ -1,11 +1,11 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
-import { ModalDelete } from "../../../components/ModalDelete";
-import { type Turnos } from "../../../types/Interfaces";
-import { Label } from "../../../components/ui/Label";
-import { Input } from "../../../components/ui/Input";
-import { URL_API } from "../../../utils/contants";
-import axios from "axios";
-import { toast } from "sonner";
+import { FormEvent, useEffect, useRef, useState } from 'react';
+import { ModalDelete } from '../../../components/ModalDelete';
+import { type Turnos } from '../../../types/Interfaces';
+import { Label } from '../../../components/ui/Label';
+import { Input } from '../../../components/ui/Input';
+import { URL_API } from '../../../utils/contants';
+import axios from 'axios';
+import { toast } from 'sonner';
 
 
 export default function Turnos() {
@@ -87,102 +87,93 @@ export default function Turnos() {
 
 
   return (
-    <section className="p-1 flex flex-col h-[90vh] relative">
-      <table className="w-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto">
-        <thead className="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th className="px-6 py-3">CODIGO</th>
-            <th className="px-6 py-3">Nombre turno</th>
-            <th className="px-6 py-3">Horas Total Día</th>
-            <th className="px-6 py-3">Hora Inicio</th>
-            <th className="px-6 py-3">Hora Fin</th>
-            <th className="px-6 py-3">Hora Inicio Break</th>
-            <th className="px-6 py-3">Hora Final Break</th>
-            <th className="px-6 py-3">Tiempo Breack</th>
-            <th className="px-6 py-3">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            turnos.map(turno => (
-              <tr key={turno.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700  ">
-                <td className="px-6 py-4">{turno.codigo}</td>
-                <td className="px-6 py-4">{turno.descripcion}</td>
-                <td className="px-6 py-4">{turno.teorico.split(':', 1)} h</td>
-                <td className="px-6 py-4">{turno.hora_inicio}</td>
-                <td className="px-6 py-4">{turno.hora_fin}</td>
-                <td className="px-6 py-4">{turno.hora_inicio_break}</td>
-                <td className="px-6 py-4">{turno.hora_fin_break}</td>
-                <td className="px-6 py-4">{turno.tiempo_breack}</td>
-                <td className='px-6 py-4 flex gap-2'>
-                  {/* <button className='bg-yellow-300 hover:bg-yellow-400 text-black px-2 py-1 rounded-md' // onClick={() => updateturno(turno)}
-                  >Editar</button> */}
-                  <button className='bg-red-400 hover:bg-red-600 text-white px-2 py-1 rounded-md' onClick={() => openModal(turno.id)}
-                  >Eliminar</button>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+    <section className='p-1 flex flex-col h-[92vh] relative'>
+      <div className='h-[84vh] overflow-y-auto'>
+        <table className='w-full text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto'>
+          <thead className='text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400'>
+            <tr>
+              <th className='px-3 py-2 text-xs'>CODIGO</th>
+              <th className='px-3 py-2 text-xs'>Nombre turno</th>
+              <th className='px-3 py-2 text-xs'>Horas Total Día</th>
+              <th className='px-3 py-2 text-xs'>Hora Inicio</th>
+              <th className='px-3 py-2 text-xs'>Hora Fin</th>
+              <th className='px-3 py-2 text-xs'>Hora Inicio Break</th>
+              <th className='px-3 py-2 text-xs'>Hora Final Break</th>
+              <th className='px-3 py-2 text-xs'>Tiempo Breack</th>
+              <th className='px-3 py-2 text-xs'>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              turnos.map(turno => (
+                <tr key={turno.id} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700  '>
+                  <td className='px-3 py-1 text-xs'>{turno.codigo}</td>
+                  <td className='px-3 py-1 text-xs'>{turno.descripcion}</td>
+                  <td className='px-3 py-1 text-xs'>{turno.teorico.split(':', 1)} h</td>
+                  <td className='px-3 py-1 text-xs'>{turno.hora_inicio}</td>
+                  <td className='px-3 py-1 text-xs'>{turno.hora_fin}</td>
+                  <td className='px-3 py-1 text-xs'>{turno.hora_inicio_break}</td>
+                  <td className='px-3 py-1 text-xs'>{turno.hora_fin_break}</td>
+                  <td className='px-3 py-1 text-xs'>{turno.tiempo_breack}</td>
+                  <td className='px-3 py-1 text-xs flex gap-2'>
+                    <button className='bg-red-400 hover:bg-red-600 text-white px-2 py-1 rounded-md' onClick={() => openModal(turno.id)}>Eliminar</button>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
 
-      <section className="mt-auto border rounded-md bg-gray-200 py-8">
+      <section className='mt-auto border rounded-md bg-gray-200 py-2 shadow-md'>
         <form ref={formRef} onSubmit={ev => handleSubmit(ev)}>
 
-          <section className="grid grid-cols-4 gap-4 px-4">
-            <div className="mb-5">
-              <Label name="codigo">Codigo</Label>
-              <Input type="text" name="codigo" id="codigo" required />
+          <section className='grid grid-cols-4 gap-1 px-2'>
+            <div>
+              <Label name='codigo'>Codigo</Label>
+              <Input type='text' name='codigo' id='codigo' required />
             </div>
 
             <div>
-              <Label name="nombre_turno" >Nombre Turno</Label>
-              <Input type="text" name="nombre_turno" id="nombre_turno" required />
+              <Label name='nombre_turno' >Nombre Turno</Label>
+              <Input type='text' name='nombre_turno' id='nombre_turno' required />
             </div>
 
             <div>
-              <Label name="teorico" >Horas Total Día</Label>
-              <Input type="text" name="teorico" id="teorico" required />
+              <Label name='hora_inicio' >Hora Inicio</Label>
+              <Input type='time' name='hora_inicio' id='hora_inicio' required />
             </div>
+
+            <div>
+              <Label name='hora_fin' >Hora Fin</Label>
+              <Input type='time' name='hora_fin' id='hora_fin' required />
+            </div>
+
+            <div>
+              <Label name='teorico' >Horas Total Día</Label>
+              <Input type='text' name='teorico' id='teorico' required />
+            </div>
+
+            <div>
+              <Label name='hora_inicio_break' >Hora Inicio Break</Label>
+              <Input type='time' name='hora_inicio_break' id='hora_inicio_break' />
+            </div>
+
+            <div>
+              <Label name='hora_fin_break' >Hora Final Break</Label>
+              <Input type='time' name='hora_fin_break' id='hora_fin_break' />
+            </div>
+
+            <div>
+              <Label name='tiempo_breack' >Tiempo Break</Label>
+              <Input type='text' name='tiempo_breack' id='tiempo_breack' />
+            </div>
+
           </section>
 
-          <section className="grid grid-cols-4 gap-4 px-4">
-            <div>
-              <Label name="hora_inicio" >Hora Inicio</Label>
-              <Input type="time" name="hora_inicio" id="hora_inicio" required />
-            </div>
-
-            <div>
-              <Label name="hora_fin" >Hora Fin</Label>
-              <Input type="time" name="hora_fin" id="hora_fin" required />
-            </div>
-
-            <div>
-              <Label name="hora_inicio_break" >Hora Inicio Break</Label>
-              <Input type="time" name="hora_inicio_break" id="hora_inicio_break" />
-            </div>
-
-            <div>
-              <Label name="hora_fin_break" >Hora Final Break</Label>
-              <Input type="time" name="hora_fin_break" id="hora_fin_break" />
-            </div>
-
-            <div>
-              <Label name="tiempo_breack" >Tiempo Break</Label>
-              <Input type="text" name="tiempo_breack" id="tiempo_breack" required />
-            </div>
-
-            {/* <div className="col-span-2">
-              <Label name="conceptos" >Concepto</Label>
-              <Input type="text" name="conceptos" id="conceptos" />
-            </div> */}
-
-
-            <button type="submit" className="bg-green-600 my-3 text-white text-xl font-semibold rounded-md hover:bg-green-700">
-              Crear Turno
-            </button>
-
-          </section>
+          <button type='submit' className='bg-green-600 mt-1 text-white text-xl font-semibold rounded-md hover:bg-green-700 py-1 mx-2 px-4'>
+            Crear Turno
+          </button>
         </form>
       </section>
 

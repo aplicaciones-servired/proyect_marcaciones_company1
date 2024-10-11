@@ -14,7 +14,7 @@ interface TurnoAttributes {
   conceptos: string;
 }
 
-type TurnoCreationAttributes = Optional<TurnoAttributes, "id" | 'hora_inicio_break' | 'hora_fin_break'>;
+type TurnoCreationAttributes = Optional<TurnoAttributes, "id" | 'hora_inicio_break' | 'hora_fin_break' | 'tiempo_breack'>;
 
 export class Turnos extends Model<TurnoAttributes, TurnoCreationAttributes> implements TurnoCreationAttributes {
   declare id: number;
