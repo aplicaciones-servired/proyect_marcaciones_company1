@@ -168,7 +168,7 @@ export default function Turnos() {
             </div>
 
             <div>
-              <Label name="tiempo_breack" >Tiempo Break ó Lunch</Label>
+              <Label name="tiempo_breack" >Tiempo Break</Label>
               <Input type="text" name="tiempo_breack" id="tiempo_breack" required />
             </div>
 
