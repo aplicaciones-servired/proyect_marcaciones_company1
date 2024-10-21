@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { URL_API } from '../utils/contants';
 import { infoMarcacion } from '../types/marcacion';
-import { BasicPie } from '../components/ui/prueba';
+import { BasicPie } from '../components/ui/donutchart';
 
 
 export default function Home() {
