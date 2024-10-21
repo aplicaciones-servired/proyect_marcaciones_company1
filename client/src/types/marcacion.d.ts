@@ -39,3 +39,14 @@ export interface AuditMarcaciones {
   estado: string
   hora_inicio: string
 }
+
+export interface infoMarcacion {
+  count: number
+  totalPersona: number
+  stados: {
+    Entrada: number
+    Entrada_intermedia: number
+    Salida_intermedia: number
+    Salida: number
+  }
+}
