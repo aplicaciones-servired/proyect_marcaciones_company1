@@ -1,6 +1,6 @@
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { CheckCircle, ChevronRight, LayoutDashboard, TimerIcon, Users, type LucideIcon } from "lucide-react"
 import { Link } from "react-router-dom"
 
 export function NavMain({ items }: {
@@ -21,22 +21,26 @@ export function NavMain({ items }: {
 
       <SidebarMenuSubButton asChild className="my-1">
         <Link to="/">
+          <LayoutDashboard className="w-6 h-6" />
           Dashboard
         </Link>
       </SidebarMenuSubButton>
       <SidebarMenuSubButton asChild className="my-1">
         <Link to="/empleados">
+          <Users className="w-6 h-6" />
           Empleados
         </Link>
       </SidebarMenuSubButton>
       <SidebarMenuSubButton asChild className="my-1">
         <Link to="/marcacion">
+          <TimerIcon className="w-6 h-6" />
           Marcaciones
         </Link>
       </SidebarMenuSubButton>
 
       <SidebarMenuSubButton asChild className="my-1">
         <Link to="/audit-marcacion">
+          <CheckCircle className="w-6 h-6" />
           Auditoria Marcaciones
         </Link>
       </SidebarMenuSubButton>
