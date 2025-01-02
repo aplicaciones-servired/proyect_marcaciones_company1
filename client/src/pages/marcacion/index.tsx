@@ -1,8 +1,13 @@
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { MarcacionPersonaArea, type Marcacion } from '@/types/marcacion'
 import { BottonExporCartera } from '@/components/ExportExcel';
-import { Calendar } from '@/components/ui/calendar';
+import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@radix-ui/react-label';
 import { useEffect, useState } from 'react';
 import { URL_API } from '@/utils/contants';
+import { Trash2 } from 'lucide-react';
 import axios from 'axios';
 
 export default function Marcacion() {
@@ -10,8 +15,6 @@ export default function Marcacion() {
   const [fechaInitial, setFechaInitial] = useState('');
   const [fechaFinal, setFechaFinal] = useState('');
   const [filter, setFilter] = useState('');
-
-  const [date, setDate] = useState<Date | undefined>(new Date())
 
   useEffect(() => {
     fetchdata();
@@ -43,77 +46,78 @@ export default function Marcacion() {
 
   return (
     <section>
-      <section className='bg-white rounded-lg shadow-md'>
-        <div className='flex justify-around items-cente'>
-          <h1 className='text-gray-700 text-lg font-semibold flex items-center'>Listado de marcaciones</h1>
+      <h1 className='text-2xl font-bold text-gray-800 dark:text-gray-100 text-center pb-1'>
+        Listado Marcaciones
+      </h1>
 
-          <p className='flex items-center'>N° Datos: {filterData.length}</p>
+      <div className='flex items-center gap-2 px-2 pb-2'>
+        <Label className='w-24'>Fecha Inicial:</Label>
+        <Input
+          className='w-44'
+          type='date'
+          value={fechaInitial}
+          onChange={(e) => setFechaInitial(e.target.value)}
+        />
+        <Label className='w-24'>Fecha Final:</Label>
+        <Input
+          className='w-44'
+          type='date'
+          value={fechaFinal}
+          onChange={(e) => setFechaFinal(e.target.value)}
+        />
 
-          <div className='flex items-center gap-2 text-xs py-1'>
-            <div className='flex items-center gap-1'>
-              <label htmlFor="">Filtrar:</label>
-              <input type="text" placeholder='N° Doc | Nombres' value={filter} onChange={(e) => setFilter(e.target.value)} className='p-1  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' />
-            </div>
+        <Button onClick={cleanDates} title='Limpiar Fechas'>
+          <Trash2 />
+        </Button>
 
-            <div className='flex items-center gap-2'>
-              <label className='w-full'>Fecha Inicial</label>
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                className="rounded-md border shadow"
-              />
-              <input type='date' value={fechaInitial} onChange={(e) => setFechaInitial(e.target.value)}
-                className='p-1 text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' />
-            </div>
-
-            <div className='flex items-center gap-2'>
-              <label className='w-full'>Fecha Final</label>
-              <input type='date' value={fechaFinal} onChange={(e) => setFechaFinal(e.target.value)}
-                className=' p-1 text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' />
-            </div>
-
-            <button className='px-2 py-2 bg-red-600 rounded-lg font-semibold text-white hover:bg-red-500' onClick={cleanDates}>
-              Limpiar Fechas
-            </button>
-          </div>
-
-          <div className='flex items-center gap-2 '>
-            <BottonExporCartera datos={filterData} time1={fechaInitial} time2={fechaFinal} />
-          </div>
-
+        <div className='ml-auto'>
+          <BottonExporCartera datos={filterData} time1={fechaInitial} time2={fechaFinal} />
         </div>
+      </div>
 
-        <table className='w-full'>
-          <thead className='bg-blue-200'>
-            <tr>
-              <th className='px-2 py-1'>ID</th>
-              <th className='px-2 py-1'>Documento</th>
-              <th className='px-2 py-1'>Nombres</th>
-              <th className='px-2 py-1'>Apellidos</th>
-              <th className='px-2 py-1'>Fecha Marcación</th>
-              <th className='px-2 py-1'>Hora Marcación</th>
-              <th className='px-2 py-1'>Estado Marcación</th>
-              <th className='px-2 py-1'>Area</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filterData?.map((marcacion) => (
-              <tr key={marcacion.id}>
-                <td className='border px-2 py-1'>{marcacion.id}</td>
-                <td className='border px-2 py-1'>{marcacion.documento}</td>
-                <td className='border px-2 py-1'>{marcacion.nombres}</td>
-                <td className='border px-2 py-1'>{marcacion.apellidos}</td>
-                <td className='border px-2 py-1'>{marcacion.fecha.toString()}</td>
-                <td className='border px-2 py-1'>{marcacion.hora.toString()}</td>
-                <td className='border px-2 py-1'>{marcacion.estado}</td>
-                <td className='border px-2 py-1'>{marcacion.area}</td>
-              </tr>
+      <div className='flex items-center gap-2 px-2 pb-2'>
+        <Label className='w-16'>Filtrar:</Label>
+        <Input
+          type="text"
+          value={filter}
+          placeholder='N° Doc | Nombres'
+          className='w-96'
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </div>
+
+      <Separator />
+
+      <div className='h-[78vh] 2xl:h-[82vh] overflow-y-auto relative'>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className='w-[12px]'>ID</TableHead>
+              <TableHead>N° Doc</TableHead>
+              <TableHead>Nombres</TableHead>
+              <TableHead>Apellidos</TableHead>
+              <TableHead>Fecha Marcación</TableHead>
+              <TableHead>Hora Marcación</TableHead>
+              <TableHead>Estado Marcación</TableHead>
+              <TableHead>Área</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filterData.map((m) => (
+              <TableRow key={m.id}>
+                <TableCell >{m.id}</TableCell>
+                <TableCell >{m.documento}</TableCell>
+                <TableCell >{m.nombres}</TableCell>
+                <TableCell>{m.apellidos}</TableCell>
+                <TableCell>{m.fecha}</TableCell>
+                <TableCell>{m.hora.slice(0, 5)}</TableCell>
+                <TableCell>{m.estado}</TableCell>
+                <TableCell>{m.area}</TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
-
-      </section>
+          </TableBody>
+        </Table>
+      </div>
     </section>
   )
 }
