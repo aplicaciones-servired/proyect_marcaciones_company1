@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
@@ -9,9 +10,7 @@ export default function Home() {
       <p className='text-lg mb-8 text-center max-w-md'>
         Aplicativo en desarrollo para la gestión de empleados y sus marcaciones. generación de reportes y auditorias.
       </p>
-      <button onClick={() => navigate('/empleados')} className='px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-300 transform hover:scale-105'>
-        Get Started
-      </button>
+      <Button onClick={() => navigate('/empleados')} >Ver Empleados</Button>
     </main>
   )
 }
