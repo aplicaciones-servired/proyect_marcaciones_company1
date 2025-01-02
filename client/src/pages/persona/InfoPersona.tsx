@@ -2,6 +2,7 @@ import { ResponsePersona, PersonaFields } from '@/types/Persona';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState, ChangeEvent } from 'react';
 import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
 import { URL_API } from '@/utils/contants';
 import { toast } from 'sonner';
 import axios from 'axios';
@@ -83,7 +84,8 @@ export default function InfoPersona() {
       });
   }
   return (
-    <section className='flex flex-col items-center justify-center h-[92vh]'>
+    <section className='flex flex-col items-center justify-center h-full relative'>
+
       <form className='flex' onSubmit={handleSubmit}>
         <section className='w-96 mx-auto px-4'>
           <h2 className='pb-6 text-center font-semibold text-2xl'>Datos Básicos Empleado</h2>
@@ -151,22 +153,22 @@ export default function InfoPersona() {
               }
             </select>
           </div>
+          <Button className='' type='submit'>
+            <span>Guardar Información</span>
+          </Button>
         </section>
 
-        <button className='absolute bottom-12 right-12 px-4 py-2 text-white bg-green-700 rounded-lg font-semibold hover:bg-green-600'>
-          <span>Guardar Información</span>
-        </button>
       </form>
 
-      <button onClick={() => handleDelete()}
-        className='absolute bottom-12 left-72 px-4 py-2 text-white bg-red-700 rounded-lg font-semibold hover:bg-red-600'>
+      <Button className='absolute bottom-2 left-2'
+        onClick={() => handleDelete()}>
         <span>Eliminar Empleado</span>
-      </button>
+      </Button>
 
-      <button onClick={() => navigate('/empleados')}
-        className='absolute bottom-12 right-64 px-4 py-2 text-white bg-red-700 rounded-lg font-semibold hover:bg-red-600'>
+      <Button className='absolute bottom-2 right-2'
+        onClick={() => navigate('/empleados')}>
         <span>Cancelar</span>
-      </button>
+      </Button>
 
     </section>
   );
